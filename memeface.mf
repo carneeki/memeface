@@ -1,0 +1,141 @@
+% ragefaces.mf by Adam Carmichael <carneeki@carneeki.net>
+% based on simpsons.mf by Raymond Chen <rjc@math.princeton.edu>
+
+mode_setup;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Parameters (and typical values) 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Pen control 
+% 
+% u#            the basic unit. 
+%               A choice of 1/16in# makes Lisa fit into a 1.5" square. 
+% 
+% thin#         The pen used for everything, unless otherwise noted. 
+%               A value of 1/18u# produces a razor-sharp-ish pen, 
+%               good for low resolution work (and which scales nicely). 
+%               But a value of 1/9u# produces a slightly thicker line 
+%               which might show up better. 
+%               And a value of 1/5u# produces a heavy pen, more in keeping 
+%               with MG's drawing style. 
+% 
+% fine#         For fine detail, like the atom logo on the SNPP cooling tower. 
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+u# = 1/80in#; 
+%thin# = 1/9 u#;         % heavy lines 
+thin# = 1/5 u#;        % realistically heavy 
+fine# = 1/9u#; 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Preparing to do business 
+ 
+define_pixels(u, pearl); 
+define_whole_blacker_pixels(thin, fine); 
+ 
+pickup pencircle scaled thin; thinpen = savepen; 
+
+define_pixels(u);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Draw grid marks during proofing 
+ 
+def makebox(text rule) = 
+    for y = 0 step 4u.o_ until charht*hppp: 
+        rule((0, y), (w, y)); 
+    endfor 
+    rule((0, charht*hppp), (w, charht*hppp)); 
+    rule((0, chardp*hppp), (w, chardp*hppp)); 
+ 
+    for x = 0 step 4u until charwd*hppp: 
+        rule ((x, -d.o_), (x, h.o_)); 
+    endfor 
+    rule ((charwd*hppp, -d.o_), (charwd*hppp, h.o_)); 
+enddef;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Local variables 
+ 
+def local(text t, v) = 
+    forsuffixes $=v: save v; t v; endfor enddef; 
+ 
+def localpath text v = local(path)(v) enddef;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+ChallengeAcceptedGuy = 1;
+Trollface = 2;
+YUNoGuy = 3;
+MeGusta = 4;
+CerealGuy = 5;
+PokerFaceGuy = 6;
+YaoMing = 7;
+SirGuy = 8;
+FuckYeahGuy = 9;
+TakesOffSunglassesGuy = 10;
+NeildeGrasseTyson = 11;
+ForeverAloneGuy = 12;
+OkayGuy = 13;
+AreYouSeriousGuy = 14;
+TrueStoryGuy = 15;
+SweetJesusGuy = 16;
+ObamaNotBad = 17;
+ILiedGuy = 18;
+YouDontSayGuy = 19;
+AwYeahGuy = 20;
+JetPackGuy = 21;
+OhGodGuy = 22;
+XAllTheYGuyHappy = 23;
+XAllTheYGuySad = 24;
+FSJAL = 25;
+IAmDisappointGuy = 26;
+StareDad = 27;
+NyanCat = 28;
+
+proofing:=2; 
+% screenstrokes; 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+beginchar(0, 0, innocence#, 0); "A pupil (no width)"; 
+    fill fullcircle scaled innocence; 
+endchar; 
+ 
+% and character 1 is SNPP. 
+input snpp 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% The x-height is 1pt.  The purpose of this is so that pupil positioning 
+% can be done in ex-units, which will therefore scale properly if the 
+% font is loaded at nonstandard magnifications. 
+ 
+fontdimen 5: 1pt#; 
+ 
+input ChallengeAcceptedGuy
+input Trollface
+input YUNoGuy
+input MeGusta
+input CerealGuy
+input PokerFaceGuy
+input YaoMing
+input SirGuy
+input FuckYeahGuy
+input TakesOffSunglassesGuy
+input NeildeGrasseTyson
+input ForeverAloneGuy
+input OkayGuy
+input AreYouSeriousGuy
+input TrueStoryGuy
+input SweetJesusGuy
+input ObamaNotBad
+input ILiedGuy
+input YouDontSayGuy
+input AwYeahGuy
+input JetPackGuy
+input OhGodGuy
+input XAllTheYGuyHappy
+input XAllTheYGuySad
+input FSJAL
+input IAmDisappointGuy
+input StareDad
+input NyanCat
+end
